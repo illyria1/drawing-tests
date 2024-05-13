@@ -8,3 +8,4 @@ install.exe
 *.npy
 example.txt
 *.pdf
+.sensitive/*
