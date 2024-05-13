@@ -1,0 +1,10 @@
+__pycache__/
+build
+dist
+env
+gui.spec
+install.exe
+.venv
+*.npy
+example.txt
+*.pdf
