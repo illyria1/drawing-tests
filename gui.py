@@ -793,23 +793,16 @@ class QAnalysis(QWidget):
             last_index = 0
             self.detecting_strokes_filtered_df = self.current_stroke.main_df[self.current_stroke.main_df['p'] >= 0.1]
             l = len(self.detecting_strokes_filtered_df)
-            prev_stroke_index = 0
             for index in range(0, len(self.detecting_strokes_filtered_df)):
                 if index == 0:
                     continue
-                # dt = self.detecting_strokes_filtered_df.iloc[index]['t'] - self.detecting_strokes_filtered_df.iloc[index - 1]['t']
-                # # dis = distance((filtered_df.iloc[index]['x'], filtered_df.iloc[index]['y']),
-                # #         (filtered_df.iloc[index - 1]['x'], filtered_df.iloc[index - 1]['y']))
-                # if dt >= 0.2 or index == l-1:
-                #     segment = Stroke(IndexedDF(self.detecting_strokes_filtered_df, last_index, index - 1))
-                #     self.addNewSegment(segment)
-                #     last_index = index
-                stroke_index = self.detecting_strokes_filtered_df.iloc[index]['stroke_index']
-                if stroke_index != prev_stroke_index or index == l-1:
+                dt = self.detecting_strokes_filtered_df.iloc[index]['t'] - self.detecting_strokes_filtered_df.iloc[index - 1]['t']
+                # dis = distance((filtered_df.iloc[index]['x'], filtered_df.iloc[index]['y']),
+                #         (filtered_df.iloc[index - 1]['x'], filtered_df.iloc[index - 1]['y']))
+                if dt >= 0.2 or index == l-1:
                     segment = Stroke(IndexedDF(self.detecting_strokes_filtered_df, last_index, index - 1))
                     self.addNewSegment(segment)
                     last_index = index
-                    prev_stroke_index = stroke_index
             self.strokes_detected = True
             self.strokes_as_segments_button.setDisabled(True)
             if self.save_segments_window is not None:

@@ -33,11 +33,12 @@ def load_data(filename):
     }
     
     #type = data['type']
-
-    for i, stroke_data in enumerate(drawing):
+    #i = 0
+    for stroke_data in drawing:
         stroke = pd.DataFrame(stroke_data)
-        stroke['stroke_index'] = i
+        #stroke['stroke_index'] = i
         test_data_frame = pd.concat([test_data_frame, stroke])
+        #i += 1
     
     return test_data_frame, extra
 
